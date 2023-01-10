@@ -1,0 +1,1 @@
+javascript:(function(){window.open('https://gmail.com/', '_blank');window.open('https://github.com/davidseanarms', '_blank'); window.open('https://www.notion.so/login', '_blank'); window.open('https://zoom.us/test', '_blank');})();
