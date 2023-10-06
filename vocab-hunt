@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Selector</title>
+    <!-- Adding Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+        <!-- Left Column for Text and Buttons -->
+        <section class="col-md-6">
+            <input type="text" id="userInput" class="form-control mt-2" placeholder="Type new text here...">
+            <button onclick="updateText()" class="btn btn-primary mt-2">Update Text</button>
+            <p id="sampleText" class="mt-2">the quick brown fox jumps over the lazy dog</p>
+            <button onclick="addTextToTable('A')" class="btn btn-secondary mt-2">New Word</button>
+            <button onclick="addTextToTable('B')" class="btn btn-secondary mt-2">Familiar</button>
+            <button onclick="addTextToTable('C')" class="btn btn-secondary mt-2">Easy/Known</button>
+        </section>
+        <!-- Right Column for Table -->
+        <section class="col-md-6">
+            <table class="table table-striped mt-2">
+                <thead>
+                    <tr>
+                        <th>New Word</th>
+                        <th>Familiar</th>
+                        <th>Easy/Known</th>
+                    </tr>
+                </thead>
+                <tbody id="outputTable">
+                    <!-- Rows will be inserted here by JavaScript -->
+                </tbody>
+            </table>
+        </section>
+    </div>
+</div>
+
+<!-- Adding Bootstrap and Popper.js JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+function updateText() {
+    let userInput = document.getElementById("userInput").value;
+    if(userInput.trim() === "") {
+        alert("Please enter some text!");
+        return;
+    }
+    document.getElementById("sampleText").innerText = userInput;
+}
+
+function addTextToTable(column) {
+    let selectedText = window.getSelection().toString();
+    if (selectedText.trim() === "") {
+        alert("Please select some text before clicking the button!");
+        return;
+    }
+
+    let table = document.getElementById("outputTable");
+    let newRow = table.insertRow(-1);
+
+    let cellA = newRow.insertCell(0).innerText = "";
+    let cellB = newRow.insertCell(1).innerText = "";
+    let cellC = newRow.insertCell(2).innerText = "";
+
+    if (column === 'A') {
+        cellA = newRow.cells[0].innerText = selectedText;
+    } else if (column === 'B') {
+        cellB = newRow.cells[1].innerText = selectedText;
+    } else if (column === 'C') {
+        cellC = newRow.cells[2].innerText = selectedText;
+    }
+}
+</script>
+
+</body>
+</html>
